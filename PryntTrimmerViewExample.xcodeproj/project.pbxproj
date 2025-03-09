@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		421D8D2A2D7DF1100087F24A /* CropDurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421D8D292D7DF1100087F24A /* CropDurationView.swift */; };
 		AB29084D24BE0D4500A55A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB29084C24BE0D4500A55A86 /* AppDelegate.swift */; };
 		AB29085424BE0D4500A55A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB29085224BE0D4500A55A86 /* Main.storyboard */; };
 		AB29085624BE0D4500A55A86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB29085524BE0D4500A55A86 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		421D8D292D7DF1100087F24A /* CropDurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropDurationView.swift; sourceTree = "<group>"; };
 		AB29084924BE0D4500A55A86 /* PryntTrimmerViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PryntTrimmerViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB29084C24BE0D4500A55A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB29085324BE0D4500A55A86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		AB4C681D24BE24E000518B1A /* Trimmer */ = {
 			isa = PBXGroup;
 			children = (
+				421D8D292D7DF1100087F24A /* CropDurationView.swift */,
 				AB4C681E24BE24E000518B1A /* HandlerView.swift */,
 				AB4C681F24BE24E000518B1A /* PryntTrimmerView.swift */,
 			);
@@ -300,6 +303,7 @@
 				AB4C682324BE24E000518B1A /* VideoCropView.swift in Sources */,
 				AB4C682024BE24E000518B1A /* AssetVideoScrollView.swift in Sources */,
 				AB4C682424BE24E000518B1A /* VideoScrollView.swift in Sources */,
+				421D8D2A2D7DF1100087F24A /* CropDurationView.swift in Sources */,
 				AB4C682624BE24E000518B1A /* HandlerView.swift in Sources */,
 				AB4C682124BE24E000518B1A /* AVAssetTimeSelector.swift in Sources */,
 				AB4C682224BE24E000518B1A /* ThumbSelectorView.swift in Sources */,
@@ -447,7 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GXH324789Z;
+				DEVELOPMENT_TEAM = JSZMBXC9Y7;
 				INFOPLIST_FILE = PryntTrimmerViewExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -465,7 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GXH324789Z;
+				DEVELOPMENT_TEAM = JSZMBXC9Y7;
 				INFOPLIST_FILE = PryntTrimmerViewExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

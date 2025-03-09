@@ -54,6 +54,20 @@ public protocol TrimmerViewDelegate: AnyObject {
         }
     }
 
+    /// The color used to duration Label backgroundColor
+    @IBInspectable public var durationLabelColor: UIColor = UIColor.black.withAlphaComponent(0.5) {
+        didSet {
+            durationLabel.backgroundColor = durationLabelColor
+        }
+    }
+    
+    /// The color used to duration Label Text
+    @IBInspectable public var durationLabelTextColor: UIColor = UIColor.white {
+        didSet {
+            durationLabel.timeLabel.backgroundColor = durationLabelTextColor
+        }
+    }
+    
     // MARK: Interface
 
     public weak var delegate: TrimmerViewDelegate?
@@ -63,6 +77,7 @@ public protocol TrimmerViewDelegate: AnyObject {
     private let trimView = UIView()
     private let leftHandleView = HandlerView()
     private let rightHandleView = HandlerView()
+    private let durationLabel = CropDurationView()
     private let positionBar = UIView()
     private let leftHandleKnob = UIView()
     private let rightHandleKnob = UIView()
@@ -92,6 +107,7 @@ public protocol TrimmerViewDelegate: AnyObject {
         layer.zPosition = 1
         setupTrimmerView()
         setupHandleView()
+        setupDurationView()
         setupMaskView()
         setupPositionBar()
         setupGestures()
@@ -160,6 +176,16 @@ public protocol TrimmerViewDelegate: AnyObject {
         rightHandleKnob.centerXAnchor.constraint(equalTo: rightHandleView.centerXAnchor).isActive = true
     }
 
+    private func setupDurationView() {
+        addSubview(durationLabel)
+        durationLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            durationLabel.leadingAnchor.constraint(equalTo: leftHandleView.trailingAnchor, constant: 4),
+            durationLabel.topAnchor.constraint(equalTo: leftHandleView.topAnchor, constant: 4),
+            durationLabel.heightAnchor.constraint(equalToConstant: 14)
+        ])
+    }
+
     private func setupMaskView() {
 
         leftMaskView.isUserInteractionEnabled = false
@@ -221,6 +247,11 @@ public protocol TrimmerViewDelegate: AnyObject {
         rightHandleKnob.backgroundColor = handleColor
     }
 
+    private func updateDurationLabel() {
+        let durationTIme =  (endTime ?? .zero) - (startTime ?? .zero)
+        durationLabel.setTime(time: durationTIme)
+    }
+    
     // MARK: - Trim Gestures
 
     @objc func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
@@ -273,6 +304,7 @@ public protocol TrimmerViewDelegate: AnyObject {
     override func assetDidChange(newAsset: AVAsset?) {
         super.assetDidChange(newAsset: newAsset)
         resetHandleViewPosition()
+        updateDurationLabel()
     }
 
     private func resetHandleViewPosition() {
@@ -312,6 +344,9 @@ public protocol TrimmerViewDelegate: AnyObject {
         guard let playerTime = positionBarTime else {
             return
         }
+        
+        updateDurationLabel()
+        
         if stoppedMoving {
             delegate?.positionBarStoppedMoving(playerTime)
         } else {
