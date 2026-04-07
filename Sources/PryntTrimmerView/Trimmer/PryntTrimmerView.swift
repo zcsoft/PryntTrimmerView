@@ -307,6 +307,14 @@ public protocol TrimmerViewDelegate: AnyObject {
         updateDurationLabel()
     }
 
+    /// Reset the selected range to the initial state without reloading the asset thumbnails.
+    public func resetSelection() {
+        assetPreview.setContentOffset(.zero, animated: false)
+        resetHandleViewPosition()
+        seek(to: .zero)
+        updateDurationLabel()
+    }
+
     private func resetHandleViewPosition() {
         leftConstraint?.constant = 0
         rightConstraint?.constant = 0
