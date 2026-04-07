@@ -15,6 +15,7 @@ class AssetVideoScrollView: UIScrollView {
 
     let contentView = UIView()
     public var maxDuration: Double = 15
+    private(set) var asset: AVAsset?
     private var generator: AVAssetImageGenerator?
 
     override init(frame: CGRect) {
@@ -52,6 +53,7 @@ class AssetVideoScrollView: UIScrollView {
     }
 
     internal func regenerateThumbnails(for asset: AVAsset) {
+        self.asset = asset
         guard let thumbnailSize = getThumbnailFrameSize(from: asset), thumbnailSize.width != 0 else {
             print("Could not calculate the thumbnail size.")
             return
@@ -65,6 +67,13 @@ class AssetVideoScrollView: UIScrollView {
         addThumbnailViews(thumbnailCount, size: thumbnailSize)
         let timesForThumbnail = getThumbnailTimes(for: asset, numberOfThumbnails: thumbnailCount)
         generateImages(for: asset, at: timesForThumbnail, with: thumbnailSize, visibleThumbnails: visibleThumbnailsCount)
+    }
+
+    internal func reloadTimelineLayout() {
+        guard let asset else {
+            return
+        }
+        regenerateThumbnails(for: asset)
     }
 
     private func getThumbnailFrameSize(from asset: AVAsset) -> CGSize? {

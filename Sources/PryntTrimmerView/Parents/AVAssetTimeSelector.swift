@@ -15,10 +15,14 @@ public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
 
     let assetPreview = AssetVideoScrollView()
 
-    /// The maximum duration allowed for the trimming. Change it before setting the asset, as the asset preview
+    /// The maximum duration allowed for the trimming.
     public var maxDuration: Double = 15 {
         didSet {
             assetPreview.maxDuration = maxDuration
+            guard oldValue != maxDuration else {
+                return
+            }
+            assetPreview.reloadTimelineLayout()
         }
     }
 
